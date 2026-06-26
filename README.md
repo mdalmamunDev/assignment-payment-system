@@ -17,7 +17,7 @@ A full-stack billing and project management application built with **Laravel 9**
 
 | Layer | Technology |
 |---|---|
-| Backend | Laravel 9, PHP 8.0+ |
+| Backend | Laravel, PHP 8.0+ |
 | Frontend (Admin) | Vue 2, Vuex, Vue Router |
 | Frontend (Public) | Blade templates, Tailwind CSS |
 | Database | MySQL |

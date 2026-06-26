@@ -9,55 +9,51 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function doLogin(Request $request){
-
+    public function doLogin(Request $request)
+    {
         $this->validate($request, [
-            'email' => 'required|email',
+            'email'    => 'required|email',
             'password' => 'required',
         ]);
 
-
-        $loginData = [
-            'email' => $request->input('email'),
+        $credentials = [
+            'email'    => $request->input('email'),
             'password' => $request->input('password'),
-            'status' => 1,
+            'status'   => 1,
         ];
 
-        if (Auth::attempt($loginData)){
-            return redirect('admin/dashboard');
-        }else{
-            return redirect()->back()->with('error', 'Invalid login credentials.');
+        if (Auth::attempt($credentials, $request->boolean('remember'))) {
+            $request->session()->regenerate();      // prevent session fixation
+            return redirect()->intended('/admin/dashboard');
         }
+
+        return redirect()->back()
+            ->withInput($request->only('email'))
+            ->with('error', 'Invalid email or password.');
     }
 
     public function doRegister(Request $request)
     {
-        // Validation with unique email check
         $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required|confirmed', // Added confirmation rule
+            'name'                  => 'required|string|max:255',
+            'email'                 => 'required|email|unique:users,email',
+            'password'              => 'required|min:6|confirmed',
         ]);
 
-
-//        $studentRoleID = Role::where('name', 'Student')->value('id');
-
-        // Create user
         User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-//            'role_id' => $studentRoleID,
+            'name'     => $request->name,
+            'email'    => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        $url = $request->input('url');
-
-        // Redirect after successful registration
-        return redirect()->route('login', ['url' => $url])->with('success', 'Registration successful.');
+        return redirect()->route('login')->with('success', 'Registration successful. Please log in.');
     }
 
-    public function logout(){
+    public function logout(Request $request)
+    {
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->route('login');
     }
 }
