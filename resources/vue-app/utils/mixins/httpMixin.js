@@ -65,8 +65,13 @@ export default {
                     }
                 })
                 .catch(function (error) {
-                    // Handle the error here, for example by showing a toast notification
-                    // toastr.error(error.message, 'Error!', {positionClass: 'toast-top-center'});
+                    if (error.response && error.response.status === 401) {
+                        window.location.href = '/admin';
+                        return;
+                    }
+                    if (error.response && error.response.data && error.response.data.message) {
+                        _this.$toast.error(error.response.data.message);
+                    }
                 });
         },
 
@@ -136,7 +141,7 @@ export default {
          * Supports various HTTP methods (GET, POST, PUT, DELETE) and allows for dynamic URL generation.
          * The response is handled through an optional callback function.
          */
-        httpReq({ url = false, customUrl = false, urlSuffix = false, method = 'get', callback = false, data = false }) {
+        httpReq({ url = false, customUrl = false, urlSuffix = false, method = 'get', callback = false, errorCallback = false, data = false }) {
             const _this = this;
 
             Axios({
@@ -159,7 +164,15 @@ export default {
 
                 })
                 .catch(function (error) {
-                    _this.$toast.error(error.message);
+                    if (typeof errorCallback === 'function') {
+                        errorCallback(error);
+                    }
+                    if (error.response && error.response.status === 401) {
+                        window.location.href = '/admin';
+                        return;
+                    }
+                    const msg = error.response?.data?.message || error.message;
+                    _this.$toast.error(msg);
                 });
         },
 

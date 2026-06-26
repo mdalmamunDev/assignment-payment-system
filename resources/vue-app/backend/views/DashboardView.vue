@@ -162,11 +162,15 @@ export default {
 
     methods: {
         loadDashboard() {
+            this.loading = true;
             this.httpReq({
                 url: this.generateUrl('api/dashboard'),
                 method: 'get',
                 callback: (result) => {
                     this.stats = result;
+                    this.loading = false;
+                },
+                errorCallback: () => {
                     this.loading = false;
                 },
             });

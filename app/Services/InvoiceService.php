@@ -53,7 +53,7 @@ class InvoiceService
       'discount_amount' => $data['discount_amount'] ?? 0,
       'final_amount' => $finalAmount,
       'paid_amount' => 0,
-      'status' => 'sent',
+      'status' => 'draft',
     ]);
   }
 
