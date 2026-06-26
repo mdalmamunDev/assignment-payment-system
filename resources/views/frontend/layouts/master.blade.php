@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FunTan</title>
+    <title>LOGO</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('vue-app/css/tailwind.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/styles/index.css') }}"/>

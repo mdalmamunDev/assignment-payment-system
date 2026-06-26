@@ -23,7 +23,7 @@
             <a href="#" class="hover:underline">Contact Us</a>
             <a href="#" class="hover:underline">Speed Test</a>
             <a href="#" class="hover:underline">Legal Notices</a>
-            <a href="#" class="hover:underline">Only on FunTan</a>
+            <a href="#" class="hover:underline">Only on LOGO</a>
         </div>
 
         <div class="mt-8">
@@ -34,7 +34,7 @@
         </div>
 
         <div class="mt-4 text-gray-500">
-            <p>FunTan Bangladesh</p>
+            <p>LOGO Bangladesh</p>
         </div>
     </div>
 </footer>
