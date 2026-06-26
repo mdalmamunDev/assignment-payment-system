@@ -18,6 +18,8 @@
                 </div>
             </form>
             <ul class="space-y-2">
+                <!-- Billing Section -->
+                 
                 <li>
                     <router-link to="/admin/dashboard" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <div class="text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white">
@@ -27,67 +29,33 @@
                     </router-link>
                 </li>
                 <li>
-                    <router-link to="/admin/items" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <div class="text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white">
-                            <i class="fa-solid fa-play"></i>
-                        </div>
-                        <span class="ml-2">Items</span>
+                    <p class="px-2 pt-4 pb-1 text-xs font-semibold text-gray-400 uppercase tracking-wider">Billing</p>
+                </li>
+                <li>
+                    <router-link to="/admin/customers" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <i class="fa-solid fa-users text-gray-500 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white w-5"></i>
+                        <span class="ml-2">Customers</span>
                     </router-link>
                 </li>
                 <li>
-                    <router-link to="/admin/industries" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <div class="text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white">
-                            <i class="fa-solid fa-industry"></i>
-                        </div>
-                        <span class="ml-2">Industries</span>
+                    <router-link to="/admin/projects" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <i class="fa-solid fa-diagram-project text-gray-500 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white w-5"></i>
+                        <span class="ml-2">Projects</span>
                     </router-link>
                 </li>
                 <li>
-                    <router-link to="/admin/genres" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <div class="text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white">
-                            <i class="fa-solid fa-film"></i>
-                        </div>
-                        <span class="ml-2">Genres</span>
+                    <router-link to="/admin/invoices" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <i class="fa-solid fa-file-invoice-dollar text-gray-500 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white w-5"></i>
+                        <span class="ml-2">Invoices</span>
                     </router-link>
                 </li>
                 <li>
-                    <router-link to="/admin/tags" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <div class="text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white">
-                            <i class="fa-solid fa-tags"></i>
-                        </div>
-                        <span class="ml-2">Tags</span>
+                    <router-link to="/admin/reports/due" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <i class="fa-solid fa-chart-bar text-gray-500 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white w-5"></i>
+                        <span class="ml-2">Due Report</span>
                     </router-link>
                 </li>
-                <li>
-                    <button type="button" class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                            aria-controls="dropdown-pages" data-collapse-toggle="dropdown-pages">
-                        <div class="text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white">
-                            <i class="fa-solid fa-film"></i>
-                        </div>
-                        <span class="flex-1 ml-2 text-left whitespace-nowrap">Pages</span>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                    <ul id="dropdown-pages" class="hidden py-2 ml-6 space-y-2">
-                        <li>
-                            <a href="#" class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                                <div class="text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white">
-                                    <i class="fa-solid fa-chart-simple"></i>
-                                </div>
-                                <span class="ml-2">Item 1</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
-                <li>
-                    <a href="#" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
-                        <div class="text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
-                            <i class="fa-solid fa-film"></i>
-                        </div>
-                        <span class="ml-2">Docs</span>
-                    </a>
-                </li>
+
             </ul>
         </div>
         <div class="hidden absolute bottom-0 left-0 justify-center p-4 space-x-4 w-full lg:flex bg-white dark:bg-gray-800 z-20">

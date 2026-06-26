@@ -53,13 +53,13 @@ export default {
             this.$store.commit('setShowModal', false);
             this.$store.commit('setFormData', defFormData);
         },
-        tableHeader({name = 'name', sortable = true, changeSort = this.changeSort, cls = 'px-6 py-3'} = {}) {
-            return {name, sortable, cls, changeSort};
+        tableHeader({ name = 'name', sortable = true, changeSort = this.changeSort, cls = 'px-6 py-3' } = {}) {
+            return { name, sortable, cls, changeSort };
         },
         getFromObjArr(objArr, key, value) {
             return objArr.find(obj => obj[key] === value) || null;
         },
-        setPageTitle({suffix}) {
+        setPageTitle({ suffix }) {
             document.title = this.appName + ' | ' + suffix ?? this.$route.meta.pageTitle;
         },
 
@@ -99,7 +99,7 @@ export default {
             if (!Array.isArray(array) || !item) return;
 
             const index = array.indexOf(item);
-            array.splice(index , 1)
+            array.splice(index, 1)
         },
 
         removeObjArrItem(objArr, obj, key = 'id') {
@@ -151,7 +151,7 @@ export default {
             this.$store.commit('setFormData', data);
         },
         resetFormData() {
-            this.setFormData({status: 1});
+            this.setFormData({ status: 1 });
         },
 
         setConfig(data) {
@@ -159,6 +159,13 @@ export default {
         },
         getConfig() {
             return this.$store.getters.Config;
+        },
+
+        formatAmount(val) {
+            return Number(val || 0).toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            });
         },
     }
 }

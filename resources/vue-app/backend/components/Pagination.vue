@@ -49,11 +49,11 @@
         props: {
             currentPage: {
                 type: Number,
-                required: true
+                // required: true
             },
             lastPage: {
                 type: Number,
-                required: true
+                // required: true
             },
         },
         computed: {
