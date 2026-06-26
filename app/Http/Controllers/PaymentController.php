@@ -9,39 +9,20 @@ use App\Http\Requests\Payment\StorePaymentRequest;
 
 class PaymentController extends Controller
 {
-    public function __construct(
-        private PaymentService $paymentService
-    ) {
-    }
-
-    public function create(Invoice $invoice)
-    {
-        if (!$invoice->canReceivePayment()) {
-            return back()->with('error', 'This invoice cannot receive payment.');
-        }
-
-        $invoice->load(['project.customer']);
-
-        return view('payments.create', compact('invoice'));
-    }
+    public function __construct(private PaymentService $paymentService) {}
 
     public function store(StorePaymentRequest $request)
     {
         $invoice = Invoice::findOrFail($request->invoice_id);
-
         $this->paymentService->savePayment($invoice, $request->validated());
 
-        return redirect()->route('invoices.show', $invoice)
-            ->with('success', 'Payment recorded successfully.');
+        return retRes('Payment recorded successfully.', null, 2000);
     }
 
     public function destroy(Payment $payment)
     {
-        $invoice = $payment->invoice;
-
         $this->paymentService->deletePayment($payment);
 
-        return redirect()->route('invoices.show', $invoice)
-            ->with('success', 'Payment deleted successfully.');
+        return retRes('Payment deleted successfully.', null, 2000);
     }
 }

@@ -11,63 +11,47 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = Customer::query()
-            ->when(request('search'), function ($q) {
-                $q->where(function ($q) {
-                    $q->where('name', 'like', '%' . request('search') . '%')
-                        ->orWhere('email', 'like', '%' . request('search') . '%')
-                        ->orWhere('phone', 'like', '%' . request('search') . '%');
-                });
-            })
+            ->when(request('name'), fn($q) => $q->where(function($q) {
+                $q->where('name', 'like', '%' . request('name') . '%')
+                  ->orWhere('email', 'like', '%' . request('name') . '%')
+                  ->orWhere('phone', 'like', '%' . request('name') . '%');
+            }))
             ->when(request('status'), fn($q) => $q->where('status', request('status')))
             ->latest()
-            ->paginate(10)
-            ->withQueryString();
+            ->paginate(request('per_page', 15));
 
-        return view('customers.index', compact('customers'));
-    }
-
-    public function create()
-    {
-        return view('customers.create');
+        return retRes('', $customers, 200);
     }
 
     public function store(StoreCustomerRequest $request)
     {
         Customer::create($request->validated());
 
-        return redirect()->route('customers.index')
-            ->with('success', 'Customer created successfully.');
+        return retRes('Customer created successfully.', null, 2000);
     }
 
     public function show(Customer $customer)
     {
-        $customer->load(['projects.invoices']);
+        $customer->load('projects');
 
-        return view('customers.show', compact('customer'));
-    }
-
-    public function edit(Customer $customer)
-    {
-        return view('customers.edit', compact('customer'));
+        return retRes('', $customer, 2000);
     }
 
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
         $customer->update($request->validated());
 
-        return redirect()->route('customers.index')
-            ->with('success', 'Customer updated successfully.');
+        return retRes('Customer updated successfully.', null, 2000);
     }
 
     public function destroy(Customer $customer)
     {
         if ($customer->hasProjects()) {
-            return back()->with('error', 'Cannot delete customer with existing projects.');
+            return retRes('Cannot delete customer with existing projects.', null, 4000);
         }
 
         $customer->delete();
 
-        return redirect()->route('customers.index')
-            ->with('success', 'Customer deleted successfully.');
+        return retRes('Customer deleted successfully.', null, 2000);
     }
 }
